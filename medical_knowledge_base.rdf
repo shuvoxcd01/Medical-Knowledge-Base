@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:ex="http://www.semanticweb-grundlagen.de/Beispiele#"
+    xmlns:base="http://www.medical-knowledge-base.org/"
+    xmlns:disease="http://www.medical-knowledge-base.org/disease/">
+
+    <!--Terminological Knowledge-->
+
+    <!-- Properties -->
+    <rdf:Property rdf:about="icdCode">
+        <rdfs:domain rdfs:nodeID="id1"></rdfs:domain>
+        <rdfs:range rdfs:resource="http://www.w3.org/2001/XMLSchema#string"></rdfs:range>
+        <rdfs:label xml:lang="en">ICD Code</rdfs:label>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="icd11Code">
+        <rdfs:subPropertyOf rdfs:resource="icdCode"></rdfs:subPropertyOf>
+        <rdfs:label xml:lang="en">ICD-11 Code</rdfs:label>
+    </rdf:Property>
+
+    <rdf:Property rdf:about="hasSymptom">
+        <rdfs:domain rdfs:resource="Disease"></rdfs:domain>
+        <rdfs:range rdfs:resource="Symptom"></rdfs:range>
+        <rdfs:label xml:lang="en">has symptom</rdfs:label>
+    </rdf:Property>
+
+    <!-- Classes -->
+    <rdfs:Class rdf:nodeID="id1">
+            <rdfs:label xml:lang="en">Disease Or Symptom</rdfs:label>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="Disease">
+        <rdfs:label xml:lang="en">Disease</rdfs:label>
+        <rdfs:subClassOf rdf:nodeID="id1"></rdfs:subClassOf>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="Symptom">
+        <rdfs:label xml:lang="en">Symptom</rdfs:label>
+        <rdfs:subClassOf rdf:nodeID="id1"></rdfs:subClassOf>
+    </rdfs:Class>
+
+    <!--Assertional Knowledge-->
+    <rdf:Description rdf:about="Pneumonia">
+        <base:icd11Code>CA40</base:icd11Code>
+        <rdfs:label xml:lang="en">Pneumonia</rdfs:label>
+        <rdfs:label xml:lang="bn">নিউমোনিয়া</rdfs:label>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="symptom#Fever">
+
+    </rdf:Description>
+
+</rdf:RDF>
