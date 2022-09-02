@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!-- DECLARATION OF USAGE OF THIRD-PARTY WEBSITES AND KNOWLEDGE-BASES.
+    The following websites are used to collect information about Physicians and their types:
+        1. https://www.webmd.com/health-insurance/insurance-doctor-types
+        2. https://www.lung.org/blog/know-your-providers-pulmonologist
+        3. https://www.healthcareers.nhs.uk/explore-roles/doctors/roles-doctors/medicine/gastroenterology
+        4. https://medlineplus.gov/ency/article/007459.htm#:~:text=Physicians%20involved%20in%20the%20treatment,training%20in%20blood%20vessel%20surgery
+
+
+    The following websites are used to collect information about Diseases and Symptoms:
+        1. https://icd.who.int/browse11/l-m/en
+
+    The following knowledge-bases are used:
+        1. FOAF 
+
+    The following websites are used to verify the validity and/or visualize the graph:
+        1. https://www.ldf.fi/service/rdf-grapher
+
+-->
+
 <!DOCTYPE rdf:RDF [
 <!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'> 
 <!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
@@ -25,23 +44,23 @@
     <!-- Properties -->
     <rdf:Property rdf:about="&property;icdCode">
         <rdfs:domain rdfs:nodeID="id1"></rdfs:domain>
-        <rdfs:range rdfs:resource="http://www.w3.org/2001/XMLSchema#string"></rdfs:range>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"></rdfs:range>
         <rdfs:label xml:lang="en">ICD Code</rdfs:label>
     </rdf:Property>
 
     <rdf:Property rdf:about="&property;icd11Code">
-        <rdfs:subPropertyOf rdfs:resource="&property;icdCode"></rdfs:subPropertyOf>
+        <rdfs:subPropertyOf rdf:resource="&property;icdCode"></rdfs:subPropertyOf>
         <rdfs:label xml:lang="en">ICD-11 Code</rdfs:label>
     </rdf:Property>
 
-    <rdf:Property rdf:about="&property;hasSymptom">
-        <rdfs:domain rdfs:resource="&disease;Disease"></rdfs:domain>
-        <rdfs:range rdfs:resource="&symptom;Symptom"></rdfs:range>
-        <rdfs:label xml:lang="en">has symptom</rdfs:label>
+    <rdf:Property rdf:about="&property;characterisedBy">
+        <rdfs:domain rdf:resource="&disease;Disease"></rdfs:domain>
+        <rdfs:range rdf:resource="&symptom;Symptom"></rdfs:range>
+        <rdfs:label xml:lang="en">characterised by</rdfs:label>
     </rdf:Property>
 
     <rdf:Property rdf:about="&property;treats">
-        <rdfs:domain rdfs:resource="&physician;Physician"></rdfs:domain>
+        <rdfs:domain rdf:resource="&physician;Physician"></rdfs:domain>
         <rdfs:range rdf:nodeID="id1"></rdfs:range>
         <rdfs:label xml:lang="en">treats</rdfs:label>
     </rdf:Property>
@@ -59,10 +78,34 @@
         <rdfs:subClassOf rdf:nodeID="id1"></rdfs:subClassOf>
     </rdfs:Class>
 
+    <rdfs:Class rdf:about="&disease;BloodOrBloodFormingOrgans">
+        <rdfs:label xml:lang="en">Diseases of the blood or blood-forming organs</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1766440644"></rdfs:seeAlso>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="&disease;NervousSystem">
+        <rdfs:label xml:lang="en">Diseases of the nervous system</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1296093776"></rdfs:seeAlso>
+    </rdfs:Class>
+
     <rdfs:Class rdf:about="&disease;InfectiousOrParasitic">
         <rdfs:label xml:lang="en">Infectious Or Parasitic Disease</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
         <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1435254666"></rdfs:seeAlso>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="&disease;CirculatorySystem">
+        <rdfs:label xml:lang="en">Diseases of the circulatory system</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/426429380"></rdfs:seeAlso>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="&disease;InfectiousGastroenteritisOrColitis">
+        <rdfs:label xml:lang="en">Gastroenteritis or colitis of infectious origin</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&disease;InfectiousOrParasitic"></rdfs:subClassOf>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/588616678"></rdfs:seeAlso>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;Neoplasms">
@@ -111,7 +154,7 @@
 
     <rdfs:Class rdf:about="&disease;LungInfection">
         <rdfs:label xml:lang="en">Lung infections</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
+        <rdfs:subClassOf rdf:resource="&disease;Respiratory"></rdfs:subClassOf>
         <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/915779102"></rdfs:seeAlso>
     </rdfs:Class>
 
@@ -125,6 +168,12 @@
         <rdfs:label xml:lang="en">General Symptoms</rdfs:label>
         <rdfs:subClassOf rdf:resource="&symptom;Symptom"></rdfs:subClassOf>
         <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1390117811"></rdfs:seeAlso>
+    </rdfs:Class>
+
+    <rdfs:Class rdf:about="&symptom;Respiratory">
+        <rdfs:label xml:lang="en">Symptoms or signs involving the respiratory system</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&symptom;Symptom"></rdfs:subClassOf>
+        <rdfs:seeAlso rdf:resource=" http://id.who.int/icd/entity/1758207185"></rdfs:seeAlso>
     </rdfs:Class>
 
     <!--Physicians-->
@@ -142,16 +191,19 @@
     <rdfs:Class rdf:about="&physician;Gastroenterologist">
         <rdf:label xml:lang="en">Gastroenterologist</rdf:label>
         <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
+        <property:treats rdf:resource="&disease;InfectiousGastroenteritisOrColitis"></property:treats>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&physician;Cardiologist">
         <rdf:label xml:lang="en">Cardiologist</rdf:label>
         <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
+        <property:treats rdf:resource="&disease;CirculatorySystem"></property:treats>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&physician;Hematologist">
         <rdf:label xml:lang="en">Hematologist</rdf:label>
         <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
+        <property:treats rdf:resource="&disease;BloodOrBloodFormingOrgans"></property:treats>
     </rdfs:Class>
 
       <rdfs:Class rdf:about="&physician;Nephrologist">
@@ -162,38 +214,17 @@
       <rdfs:Class rdf:about="&physician;Neurologist">
         <rdf:label xml:lang="en">Neurologist</rdf:label>
         <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
+        <property:treats rdf:resource="&disease;NervousSystem"></property:treats>
     </rdfs:Class>
 
-      <rdfs:Class rdf:about="&physician;Pulmonologist">
+    <rdfs:Class rdf:about="&physician;Pulmonologist">
         <rdf:label xml:lang="en">Pulmonologist</rdf:label>
         <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
+        <property:treats rdf:resource="&disease;Respiratory"></property:treats>
     </rdfs:Class>
+
     <!--Assertional Knowledge-->
-    <rdf:Description rdf:about="&disease;Pneumonia">
-        <property:icd11Code>CA40</property:icd11Code>
-        <rdfs:label xml:lang="en">Pneumonia</rdfs:label>
-        <rdfs:label xml:lang="bn">নিউমোনিয়া</rdfs:label>
-        <rdf:type rdf:resource="&disease;LungInfection"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/142052508"></rdfs:seeAlso>
-        <property:hasSymptom rdf:resource="&symptom;Fever"></property:hasSymptom>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="&disease;DiabetesType1">
-        <property:icd11Code>5A10</property:icd11Code>
-        <rdfs:label xml:lang="en">Type 1 Diabetes</rdfs:label>
-        <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ১</rdfs:label>
-        <rdf:type rdf:resource="&disease;Diabetes"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1651053999"></rdfs:seeAlso>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="&disease;DiabetesType2">
-        <property:icd11Code>5A11</property:icd11Code>
-        <rdfs:label xml:lang="en">Type 2 Diabetes</rdfs:label>
-        <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ২</rdfs:label>
-        <rdf:type rdf:resource="&disease;Diabetes"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/119724091"></rdfs:seeAlso>
-    </rdf:Description>
-
+    <!--Symptoms-->
     <rdf:Description rdf:about="&symptom;Fever">
         <property:icd11Code>MG26</property:icd11Code>
         <rdfs:label xml:lang="en">Fever of other or unknown origin</rdfs:label>
@@ -215,5 +246,90 @@
         <rdf:seeAlso rdf:resource="http://id.who.int/icd/entity/1109546957"></rdf:seeAlso>
     </rdf:Description>
 
+    <rdf:Description rdf:about="&symptom;Cough">
+        <property:icd11Code>MD12</property:icd11Code>
+        <rdfs:label xml:lang="en">Cough</rdfs:label>
+        <rdf:type rdf:resource="&symptom;Respiratory"></rdf:type>
+        <rdf:seeAlso rdf:resource="http://id.who.int/icd/entity/2027526159"></rdf:seeAlso>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="&symptom;BreathingAbnormalities">
+        <property:icd11Code>MD11</property:icd11Code>
+        <rdfs:label xml:lang="en">Abnormalities of breathing</rdfs:label>
+        <rdf:type rdf:resource="&symptom;Respiratory"></rdf:type>
+        <rdf:seeAlso rdf:resource="http://id.who.int/icd/entity/208980208"></rdf:seeAlso>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="&symptom;Wheezing">
+        <property:icd11Code>MD11.C</property:icd11Code>
+        <rdfs:label xml:lang="en">Wheezing</rdfs:label>
+        <rdf:type rdf:resource="&symptom;BreathingAbnormalities"></rdf:type>
+        <rdf:seeAlso rdf:resource="http://id.who.int/icd/entity/685476566"></rdf:seeAlso>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="&symptom;Dyspnoea">
+        <property:icd11Code>MD11.5</property:icd11Code>
+        <rdfs:label xml:lang="en">Dyspnoea</rdfs:label>
+        <rdf:type rdf:resource="&symptom;BreathingAbnormalities"></rdf:type>
+        <rdf:seeAlso rdf:resource="http://id.who.int/icd/entity/960305085"></rdf:seeAlso>
+    </rdf:Description>
+    
+
+    <!--Diseases-->
+    <rdf:Description rdf:about="&disease;Pneumonia">
+        <property:icd11Code>CA40</property:icd11Code>
+        <rdfs:label xml:lang="en">Pneumonia</rdfs:label>
+        <rdfs:label xml:lang="bn">নিউমোনিয়া</rdfs:label>
+        <rdf:type rdf:resource="&disease;LungInfection"></rdf:type>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/142052508"></rdfs:seeAlso>
+        <property:characterisedBy rdf:resource="&symptom;Fever"></property:characterisedBy>
+        <property:characterisedBy rdf:resource="&symptom;Chills"></property:characterisedBy>
+        <property:characterisedBy rdf:resource="&symptom;Cough"></property:characterisedBy>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="&disease;DiabetesType1">
+        <property:icd11Code>5A10</property:icd11Code>
+        <rdfs:label xml:lang="en">Type 1 Diabetes</rdfs:label>
+        <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ১</rdfs:label>
+        <rdf:type rdf:resource="&disease;Diabetes"></rdf:type>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1651053999"></rdfs:seeAlso>
+    </rdf:Description>
+
+    <rdf:Description rdf:about="&disease;DiabetesType2">
+        <property:icd11Code>5A11</property:icd11Code>
+        <rdfs:label xml:lang="en">Type 2 Diabetes</rdfs:label>
+        <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ২</rdfs:label>
+        <rdf:type rdf:resource="&disease;Diabetes"></rdf:type>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/119724091"></rdfs:seeAlso>
+    </rdf:Description>
+
+
+    <rdf:Description rdf:about="&disease;AcuteBronchitis">
+        <property:icd11Code>CA42</property:icd11Code>
+        <rdfs:label xml:lang="en">Acute bronchitis</rdfs:label>
+        <rdfs:label xml:lang="bn">তীব্র ব্রংকাইটিস</rdfs:label>
+        <rdf:type rdf:resource="&disease;LungInfection"></rdf:type>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/727572936"></rdfs:seeAlso>
+        <property:characterisedBy rdf:resource="&symptom;Fever"></property:characterisedBy>
+        <property:characterisedBy rdf:resource="&symptom;Wheezing"></property:characterisedBy>
+        <property:characterisedBy rdf:resource="&symptom;Cough"></property:characterisedBy>
+        <property:characterisedBy rdf:resource="&symptom;Dyspnoea"></property:characterisedBy>
+    </rdf:Description>
+
+    Gastroenteritis or colitis without specification of infectious agent
+
+    <rdf:Description rdf:about="&disease;UnspecifiedInfectiousGastroenteritisOrColitis">
+        <property:icd11Code>1A40</property:icd11Code>
+        <rdfs:label xml:lang="en">Gastroenteritis or colitis without specification of infectious agent</rdfs:label>
+        <rdfs:label xml:lang="bn">সংক্রামক এজেন্টের নির্দিষ্টকরণ ছাড়াই গ্যাস্ট্রোএন্টেরাইটিস বা কোলাইটিস</rdfs:label>
+        <rdf:type rdf:resource="&disease;InfectiousGastroenteritisOrColitis"></rdf:type>
+        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1688127370"></rdfs:seeAlso>
+    </rdf:Description>
+
+
+    <!--Physicians-->
+
+
+    
 
 </rdf:RDF>
