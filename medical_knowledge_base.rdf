@@ -30,6 +30,7 @@
 <!ENTITY disease 'http://www.medical-knowledge-base.org/disease#'>
 <!ENTITY symptom 'http://www.medical-knowledge-base.org/symptom#'>
 <!ENTITY physician 'http://www.medical-knowledge-base.org/physician#'>
+<!ENTITY individual_physician 'http://www.medical-knowledge-base.org/physician/individual#'>
 <!ENTITY property 'http://www.medical-knowledge-base.org/property#'>
 <!ENTITY medorg 'http://www.medical-knowledge-base.org/medical-organization#'>
 <!ENTITY foaf 'http://xmlns.com/foaf/0.1/'>
@@ -101,37 +102,37 @@
     <rdfs:Class rdf:about="&disease;BloodOrBloodFormingOrgans">
         <rdfs:label xml:lang="en">Diseases of the blood or blood-forming organs</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1766440644"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1766440644"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;NervousSystem">
         <rdfs:label xml:lang="en">Diseases of the nervous system</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1296093776"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1296093776"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;InfectiousOrParasitic">
         <rdfs:label xml:lang="en">Infectious Or Parasitic Disease</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1435254666"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1435254666"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;CirculatorySystem">
         <rdfs:label xml:lang="en">Diseases of the circulatory system</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/426429380"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/426429380"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;InfectiousGastroenteritisOrColitis">
         <rdfs:label xml:lang="en">Gastroenteritis or colitis of infectious origin</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;InfectiousOrParasitic"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/588616678"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/588616678"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;Neoplasms">
         <rdfs:label xml:lang="en">Neoplasms</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1630407678"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1630407678"></rdfs:isDefinedBy>
         <rdfs:comment>An abnormal or uncontrolled cellular proliferation which is not coordinated with an 
         organism's requirements for normal tissue growth, replacement or repair.</rdfs:comment>
     </rdfs:Class>
@@ -139,43 +140,43 @@
     <rdfs:Class rdf:nodeID="id2">
         <rdfs:label xml:lang="en">Endocrine, nutritional or metabolic Diseases</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/21500692"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/21500692"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;Endocrine">
         <rdfs:label xml:lang="en">Endocrine Diseases</rdfs:label>
         <rdfs:subClassOf rdf:nodeID="id2"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/461716838"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/461716838"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;Diabetes">
         <rdfs:label xml:lang="en">Diabetes Mellitus</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Endocrine"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/465177735"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/465177735"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;Nutritional">
         <rdfs:label xml:lang="en">Nutritional Disorders</rdfs:label>
         <rdfs:subClassOf rdf:nodeID="id2"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1671987290"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1671987290"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;Metabolic">
         <rdfs:label xml:lang="en">Metabolic Disorders</rdfs:label>
         <rdfs:subClassOf rdf:nodeID="id2"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/155258022"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/155258022"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;Respiratory">
         <rdfs:label xml:lang="en">Diseases of the Respiratory System</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/197934298"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/197934298"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&disease;LungInfection">
         <rdfs:label xml:lang="en">Lung infections</rdfs:label>
         <rdfs:subClassOf rdf:resource="&disease;Respiratory"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/915779102"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/915779102"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <!--Symptoms-->
@@ -187,13 +188,13 @@
      <rdfs:Class rdf:about="&symptom;General">
         <rdfs:label xml:lang="en">General Symptoms</rdfs:label>
         <rdfs:subClassOf rdf:resource="&symptom;Symptom"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1390117811"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1390117811"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <rdfs:Class rdf:about="&symptom;Respiratory">
         <rdfs:label xml:lang="en">Symptoms or signs involving the respiratory system</rdfs:label>
         <rdfs:subClassOf rdf:resource="&symptom;Symptom"></rdfs:subClassOf>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1758207185"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1758207185"></rdfs:isDefinedBy>
     </rdfs:Class>
 
     <!--Physicians-->
@@ -265,49 +266,49 @@
         <property:icd11Code>MG26</property:icd11Code>
         <rdfs:label xml:lang="en">Fever of other or unknown origin</rdfs:label>
         <rdf:type rdf:resource="&symptom;General"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/915343154"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/915343154"></rdfs:isDefinedBy>
     </rdf:Description>
 
     <rdf:Description rdf:about="&symptom;Chills">
         <property:icd11Code>MG21</property:icd11Code>
         <rdfs:label xml:lang="en">Chills</rdfs:label>
         <rdf:type rdf:resource="&symptom;General"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1495646237"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1495646237"></rdfs:isDefinedBy>
     </rdf:Description>
 
     <rdf:Description rdf:about="&symptom;Fatigue">
         <property:icd11Code>MG22</property:icd11Code>
         <rdfs:label xml:lang="en">Fatigue</rdfs:label>
         <rdf:type rdf:resource="&symptom;General"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1109546957"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1109546957"></rdfs:isDefinedBy>
     </rdf:Description>
 
     <rdf:Description rdf:about="&symptom;Cough">
         <property:icd11Code>MD12</property:icd11Code>
         <rdfs:label xml:lang="en">Cough</rdfs:label>
         <rdf:type rdf:resource="&symptom;Respiratory"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/2027526159"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/2027526159"></rdfs:isDefinedBy>
     </rdf:Description>
 
     <rdf:Description rdf:about="&symptom;BreathingAbnormalities">
         <property:icd11Code>MD11</property:icd11Code>
         <rdfs:label xml:lang="en">Abnormalities of breathing</rdfs:label>
         <rdf:type rdf:resource="&symptom;Respiratory"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/208980208"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/208980208"></rdfs:isDefinedBy>
     </rdf:Description>
 
     <rdf:Description rdf:about="&symptom;Wheezing">
         <property:icd11Code>MD11.C</property:icd11Code>
         <rdfs:label xml:lang="en">Wheezing</rdfs:label>
         <rdf:type rdf:resource="&symptom;BreathingAbnormalities"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/685476566"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/685476566"></rdfs:isDefinedBy>
     </rdf:Description>
 
     <rdf:Description rdf:about="&symptom;Dyspnoea">
         <property:icd11Code>MD11.5</property:icd11Code>
         <rdfs:label xml:lang="en">Dyspnoea</rdfs:label>
         <rdf:type rdf:resource="&symptom;BreathingAbnormalities"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/960305085"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/960305085"></rdfs:isDefinedBy>
     </rdf:Description>
     
 
@@ -317,7 +318,7 @@
         <rdfs:label xml:lang="en">Pneumonia</rdfs:label>
         <rdfs:label xml:lang="bn">নিউমোনিয়া</rdfs:label>
         <rdf:type rdf:resource="&disease;LungInfection"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/142052508"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/142052508"></rdfs:isDefinedBy>
         <property:characterisedBy rdf:resource="&symptom;Fever"></property:characterisedBy>
         <property:characterisedBy rdf:resource="&symptom;Chills"></property:characterisedBy>
         <property:characterisedBy rdf:resource="&symptom;Cough"></property:characterisedBy>
@@ -328,7 +329,7 @@
         <rdfs:label xml:lang="en">Type 1 Diabetes</rdfs:label>
         <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ১</rdfs:label>
         <rdf:type rdf:resource="&disease;Diabetes"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1651053999"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1651053999"></rdfs:isDefinedBy>
     </rdf:Description>
 
     <rdf:Description rdf:about="&disease;DiabetesType2">
@@ -336,7 +337,7 @@
         <rdfs:label xml:lang="en">Type 2 Diabetes</rdfs:label>
         <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ২</rdfs:label>
         <rdf:type rdf:resource="&disease;Diabetes"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/119724091"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/119724091"></rdfs:isDefinedBy>
     </rdf:Description>
 
 
@@ -345,7 +346,7 @@
         <rdfs:label xml:lang="en">Acute bronchitis</rdfs:label>
         <rdfs:label xml:lang="bn">তীব্র ব্রংকাইটিস</rdfs:label>
         <rdf:type rdf:resource="&disease;LungInfection"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/727572936"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/727572936"></rdfs:isDefinedBy>
         <property:characterisedBy rdf:resource="&symptom;Fever"></property:characterisedBy>
         <property:characterisedBy rdf:resource="&symptom;Wheezing"></property:characterisedBy>
         <property:characterisedBy rdf:resource="&symptom;Cough"></property:characterisedBy>
@@ -357,7 +358,7 @@
         <rdfs:label xml:lang="en">Gastroenteritis or colitis without specification of infectious agent</rdfs:label>
         <rdfs:label xml:lang="bn">সংক্রামক এজেন্টের নির্দিষ্টকরণ ছাড়াই গ্যাস্ট্রোএন্টেরাইটিস বা কোলাইটিস</rdfs:label>
         <rdf:type rdf:resource="&disease;InfectiousGastroenteritisOrColitis"></rdf:type>
-        <rdfs:seeAlso rdf:resource="http://id.who.int/icd/entity/1688127370"></rdfs:seeAlso>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1688127370"></rdfs:isDefinedBy>
     </rdf:Description>
 
     <!--Medical Organizations-->
@@ -375,7 +376,7 @@
 
 
     <!--Physicians-->
-    <rdf:Description rdf:about="https://www.evercarebd.com/profile/?cid=69">
+    <rdf:Description rdf:about="&individual_physician;ShamsMunwar">
         <rdf:type rdf:resource="&physician;Cardiologist"></rdf:type>
         <foaf:name>Dr. Shams Munwar</foaf:name>
         <property:hasAcademicDegrees>
@@ -397,9 +398,10 @@
         Before joining Evercare Hospital Dhaka, he was working as Head of the Department of Cardiology at Z.H. Sikder Women's Medical College.
         </property:bio>
         <property:worksAt rdf:resource="https://www.evercarebd.com/"></property:worksAt>
+        <rdfs:seeAlso rdf:resource="https://www.evercarebd.com/profile/?cid=69"></rdfs:seeAlso>
     </rdf:Description>
 
-    <rdf:Description rdf:about="https://pathanbd.com/">
+    <rdf:Description rdf:about="&individual_physician;FaruquePathan">
         <rdf:type rdf:resource="&physician;Endocrinologist"></rdf:type>
         <foaf:name>Md. Faruque Pathan</foaf:name>
         <foaf:mbox>pathan279@yahoo.com</foaf:mbox>
@@ -415,6 +417,7 @@
         His working arena covers clinical services with excellence of care, researches and teaching of post graduate students and trainee doctors for mentioned subspecialty.
         </property:bio>
         <property:worksAt rdf:resource="https://www.birdembd.org/"></property:worksAt>
+        <rdfs:seeAlso rdf:resource="https://pathanbd.com/"></rdfs:seeAlso>
     </rdf:Description>
 
 </rdf:RDF>
