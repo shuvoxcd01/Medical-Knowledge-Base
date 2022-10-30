@@ -1,391 +1,1261 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.medical-knowledge-base.org/ontology#"
+     xml:base="http://www.medical-knowledge-base.org/ontology"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:base="http://www.medical-knowledge-base.org/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:medorg="http://www.medical-knowledge-base.org/medical-organization#"
+     xmlns:disease="http://www.medical-knowledge-base.org/disease/"
+     xmlns:symptom="http://www.medical-knowledge-base.org/symptom#"
+     xmlns:property="http://www.medical-knowledge-base.org/property#"
+     xmlns:physician="http://www.medical-knowledge-base.org/physician#"
+     xmlns:property1="http://www.medical-knowledge-base.org/ontology/property#"
+     xmlns:individual_physician="http://www.medical-knowledge-base.org/physician/individual#">
+    <owl:Ontology rdf:about="http://www.medical-knowledge-base.org/ontology"/>
+    
 
-<!-- ACKNOWLEDGEMENT OF USAGE OF THIRD-PARTY WEBSITES AND KNOWLEDGE-BASES.
-    The following websites are used to collect information about Physicians and their types:
-        1. https://www.webmd.com/health-insurance/insurance-doctor-types
-        2. https://www.lung.org/blog/know-your-providers-pulmonologist
-        3. https://www.healthcareers.nhs.uk/explore-roles/doctors/roles-doctors/medicine/gastroenterology
-        4. https://medlineplus.gov/ency/article/007459.htm#:~:text=Physicians%20involved%20in%20the%20treatment,training%20in%20blood%20vessel%20surgery
-        5. http://pathanbd.com/
-        6. https://www.birdembd.org/
-        7. https://www.evercarebd.com/
 
-    The following websites are used to collect information about Diseases and Symptoms:
-        1. https://icd.who.int/browse11/l-m/en
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
 
-    The following knowledge-bases are used:
-        1. FOAF 
+    
 
-    The following websites are used to verify the validity and/or visualize the graph:
-        1. https://www.ldf.fi/service/rdf-grapher
-        2. https://www.w3.org/RDF/Validator/
 
--->
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
 
-<!DOCTYPE rdf:RDF [
-<!ENTITY rdf 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'> 
-<!ENTITY rdfs 'http://www.w3.org/2000/01/rdf-schema#'>
-<!ENTITY xsd 'http://www.w3.org/2001/XMLSchema#'>
-<!ENTITY base 'http://www.medical-knowledge-base.org/'>
-<!ENTITY disease 'http://www.medical-knowledge-base.org/disease#'>
-<!ENTITY symptom 'http://www.medical-knowledge-base.org/symptom#'>
-<!ENTITY physician 'http://www.medical-knowledge-base.org/physician#'>
-<!ENTITY individual_physician 'http://www.medical-knowledge-base.org/physician/individual#'>
-<!ENTITY property 'http://www.medical-knowledge-base.org/property#'>
-<!ENTITY medorg 'http://www.medical-knowledge-base.org/medical-organization#'>
-<!ENTITY foaf 'http://xmlns.com/foaf/0.1/'>
-]>
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
 
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-    xmlns:base="http://www.medical-knowledge-base.org/"
-    xmlns:disease="http://www.medical-knowledge-base.org/disease/"
-    xmlns:property="http://www.medical-knowledge-base.org/property#"
-    xmlns:foaf="http://xmlns.com/foaf/0.1/"
-    >
 
-    <!--Terminological Knowledge-->
+    <!-- http://www.medical-knowledge-base.org/property#worksAt -->
 
-    <!-- Properties -->
-    <rdf:Property rdf:about="&property;icdCode">
-        <rdfs:domain rdfs:nodeID="id1"></rdfs:domain>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"></rdfs:range>
-        <rdfs:label xml:lang="en">ICD Code</rdfs:label>
-    </rdf:Property>
-
-    <rdf:Property rdf:about="&property;icd11Code">
-        <rdfs:subPropertyOf rdf:resource="&property;icdCode"></rdfs:subPropertyOf>
-        <rdfs:label xml:lang="en">ICD-11 Code</rdfs:label>
-    </rdf:Property>
-
-    <rdf:Property rdf:about="&property;characterisedBy">
-        <rdfs:domain rdf:resource="&disease;Disease"></rdfs:domain>
-        <rdfs:range rdf:resource="&symptom;Symptom"></rdfs:range>
-        <rdfs:label xml:lang="en">characterised by</rdfs:label>
-    </rdf:Property>
-
-    <rdf:Property rdf:about="&property;treats">
-        <rdfs:domain rdf:resource="&physician;Physician"></rdfs:domain>
-        <rdfs:range rdf:nodeID="id1"></rdfs:range>
-        <rdfs:label xml:lang="en">treats</rdfs:label>
-    </rdf:Property>
-
-    <rdf:Property rdf:about="&property;hasAcademicDegrees">
-        <rdfs:domain rdf:resource="&physician;Physician"></rdfs:domain>
-        <rdfs:label xml:lang="en">has academic degrees</rdfs:label>
-    </rdf:Property>
-
-    <rdf:Property rdf:about="&property;bio">
-        <rdfs:domain rdf:resource="&physician;Physician"></rdfs:domain>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"></rdfs:range>
-        <rdfs:label xml:lang="en">bio</rdfs:label>
-    </rdf:Property>
-
-    <rdf:Property rdf:about="&property;worksAt">
-        <rdfs:domain rdf:resource="&medorg;MedicalOrganization"></rdfs:domain>
+    <owl:AnnotationProperty rdf:about="http://www.medical-knowledge-base.org/property#worksAt">
         <rdfs:range xml:lang="en">works at</rdfs:range>
-    </rdf:Property>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/medical-organization#MedicalOrganization"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+    </owl:AnnotationProperty>
+    
 
-    <!-- Classes -->
 
-    <!--Parent class of all diseases and symptoms-->
-    <rdfs:Class rdf:nodeID="id1">
-            <rdfs:label xml:lang="en">Disease Or Symptom</rdfs:label>
-    </rdfs:Class>
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#_1 -->
 
-    <!-- Diseases -->
-    <rdfs:Class rdf:about="&disease;Disease">
-        <rdfs:label xml:lang="en">Disease</rdfs:label>
-        <rdfs:subClassOf rdf:nodeID="id1"></rdfs:subClassOf>
-    </rdfs:Class>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#_1"/>
+    
 
-    <rdfs:Class rdf:about="&disease;BloodOrBloodFormingOrgans">
-        <rdfs:label xml:lang="en">Diseases of the blood or blood-forming organs</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1766440644"></rdfs:isDefinedBy>
-    </rdfs:Class>
 
-    <rdfs:Class rdf:about="&disease;NervousSystem">
-        <rdfs:label xml:lang="en">Diseases of the nervous system</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1296093776"></rdfs:isDefinedBy>
-    </rdfs:Class>
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#_2 -->
 
-    <rdfs:Class rdf:about="&disease;InfectiousOrParasitic">
-        <rdfs:label xml:lang="en">Infectious Or Parasitic Disease</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1435254666"></rdfs:isDefinedBy>
-    </rdfs:Class>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#_2"/>
+    
 
-    <rdfs:Class rdf:about="&disease;CirculatorySystem">
-        <rdfs:label xml:lang="en">Diseases of the circulatory system</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/426429380"></rdfs:isDefinedBy>
-    </rdfs:Class>
 
-    <rdfs:Class rdf:about="&disease;InfectiousGastroenteritisOrColitis">
-        <rdfs:label xml:lang="en">Gastroenteritis or colitis of infectious origin</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;InfectiousOrParasitic"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/588616678"></rdfs:isDefinedBy>
-    </rdfs:Class>
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#_3 -->
 
-    <rdfs:Class rdf:about="&disease;Neoplasms">
-        <rdfs:label xml:lang="en">Neoplasms</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1630407678"></rdfs:isDefinedBy>
-        <rdfs:comment>An abnormal or uncontrolled cellular proliferation which is not coordinated with an 
-        organism's requirements for normal tissue growth, replacement or repair.</rdfs:comment>
-    </rdfs:Class>
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#_3"/>
+    
 
-    <rdfs:Class rdf:nodeID="id2">
-        <rdfs:label xml:lang="en">Endocrine, nutritional or metabolic Diseases</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/21500692"></rdfs:isDefinedBy>
-    </rdfs:Class>
 
-    <rdfs:Class rdf:about="&disease;Endocrine">
-        <rdfs:label xml:lang="en">Endocrine Diseases</rdfs:label>
-        <rdfs:subClassOf rdf:nodeID="id2"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/461716838"></rdfs:isDefinedBy>
-    </rdfs:Class>
+    <!-- http://www.w3.org/2000/01/rdf-schema#domain -->
 
-    <rdfs:Class rdf:about="&disease;Diabetes">
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#domain"/>
+    
+
+
+    <!-- http://www.w3.org/2000/01/rdf-schema#range -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#range"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#equivalentClass -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#equivalentClass"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/homepage -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/homepage"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/mbox -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/mbox"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/name -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/name"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/phone -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/phone"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/workplaceHomepage -->
+
+    <owl:AnnotationProperty rdf:about="http://xmlns.com/foaf/0.1/workplaceHomepage"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#recommended_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology#recommended_by">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.medical-knowledge-base.org/ontology#recommends"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-test#DiagnosticTest"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#recommends -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology#recommends"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#consulted_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#consulted_by">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.medical-knowledge-base.org/ontology/property#consults"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#consults -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#consults">
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/ontology#Patient"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#cured_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#cured_by">
+        <owl:inverseOf rdf:resource="http://www.medical-knowledge-base.org/ontology/property#cures"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#Medication"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#cures -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#cures">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#Medication"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#hasDiseaseOrSymptom -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#hasDiseaseOrSymptom">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/ontology#Patient"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#has_info_about -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#has_info_about">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-test#DiagnosticTest"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#has_report -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#has_report">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/ontology#Patient"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/ontology#DiagnosticReport"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#performed_in -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#performed_in">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-test#DiagnosticTest"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/medical-organization#MedicalOrganization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#prescribed_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#prescribed_by">
+        <owl:inverseOf rdf:resource="http://www.medical-knowledge-base.org/ontology/property#prescribes"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#prescribes -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#prescribes">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#Medication"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#produced_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#produced_by">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.medical-knowledge-base.org/ontology/property#produces"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/ontology#DiagnosticReport"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-test#DiagnosticTest"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/property#produces -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/ontology/property#produces"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/property#characterisedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/property#characterisedBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/disease#Disease"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/symptom#Symptom"/>
+        <rdfs:label xml:lang="en">characterised by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/property#treats -->
+
+    <owl:ObjectProperty rdf:about="http://www.medical-knowledge-base.org/property#treats">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+        <rdfs:range rdf:resource="http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom"/>
+        <rdfs:label xml:lang="en">treats</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/property#bio -->
+
+    <owl:DatatypeProperty rdf:about="http://www.medical-knowledge-base.org/property#bio">
+        <rdfs:domain rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="en">bio</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/property#icd11Code -->
+
+    <owl:DatatypeProperty rdf:about="http://www.medical-knowledge-base.org/property#icd11Code">
+        <rdfs:subPropertyOf rdf:resource="http://www.medical-knowledge-base.org/property#icdCode"/>
+        <rdfs:label xml:lang="en">ICD-11 Code</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/property#icdCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.medical-knowledge-base.org/property#icdCode">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain></rdfs:domain>
+        <rdfs:label xml:lang="en">ICD Code</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#BloodOrBloodFormingOrgans -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#BloodOrBloodFormingOrgans">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Disease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#CirculatorySystem -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#CirculatorySystem">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Disease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#Diabetes -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#Diabetes">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Endocrine"/>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/465177735"/>
         <rdfs:label xml:lang="en">Diabetes Mellitus</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Endocrine"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/465177735"></rdfs:isDefinedBy>
-    </rdfs:Class>
+    </owl:Class>
+    
 
-    <rdfs:Class rdf:about="&disease;Nutritional">
-        <rdfs:label xml:lang="en">Nutritional Disorders</rdfs:label>
-        <rdfs:subClassOf rdf:nodeID="id2"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1671987290"></rdfs:isDefinedBy>
-    </rdfs:Class>
 
-    <rdfs:Class rdf:about="&disease;Metabolic">
-        <rdfs:label xml:lang="en">Metabolic Disorders</rdfs:label>
-        <rdfs:subClassOf rdf:nodeID="id2"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/155258022"></rdfs:isDefinedBy>
-    </rdfs:Class>
+    <!-- http://www.medical-knowledge-base.org/disease#Disease -->
 
-    <rdfs:Class rdf:about="&disease;Respiratory">
-        <rdfs:label xml:lang="en">Diseases of the Respiratory System</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Disease"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/197934298"></rdfs:isDefinedBy>
-    </rdfs:Class>
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#Disease">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom"/>
+        <rdfs:label xml:lang="en">Disease</rdfs:label>
+    </owl:Class>
+    
 
-    <rdfs:Class rdf:about="&disease;LungInfection">
+
+    <!-- http://www.medical-knowledge-base.org/disease#Endocrine -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#Endocrine">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#EndocrineMetabolicOrNutritionalDisorders"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#EndocrineMetabolicOrNutritionalDisorders -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#EndocrineMetabolicOrNutritionalDisorders">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Disease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#InfectiousGastroenteritisOrColitis -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#InfectiousGastroenteritisOrColitis">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#InfectiousOrParasitic"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#InfectiousOrParasitic -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#InfectiousOrParasitic">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Disease"/>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1435254666"/>
+        <rdfs:label xml:lang="en">Infectious Or Parasitic Disease</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#LungInfection -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#LungInfection">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Respiratory"/>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/915779102"/>
         <rdfs:label xml:lang="en">Lung infections</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&disease;Respiratory"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/915779102"></rdfs:isDefinedBy>
-    </rdfs:Class>
-
-    <!--Symptoms-->
-    <rdfs:Class rdf:about="&symptom;Symptom">
-        <rdfs:label xml:lang="en">Symptom</rdfs:label>
-        <rdfs:subClassOf rdf:nodeID="id1"></rdfs:subClassOf>
-    </rdfs:Class>
-
-     <rdfs:Class rdf:about="&symptom;General">
-        <rdfs:label xml:lang="en">General Symptoms</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&symptom;Symptom"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1390117811"></rdfs:isDefinedBy>
-    </rdfs:Class>
-
-    <rdfs:Class rdf:about="&symptom;Respiratory">
-        <rdfs:label xml:lang="en">Symptoms or signs involving the respiratory system</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&symptom;Symptom"></rdfs:subClassOf>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1758207185"></rdfs:isDefinedBy>
-    </rdfs:Class>
-
-    <!--Physicians-->
-    <rdfs:Class rdf:about="&physician;Physician">
-        <rdfs:label xml:lang="en">Physician</rdfs:label>
-        <rdf:type rdf:resource="&foaf;Person"></rdf:type>
-    </rdfs:Class>
-
-    <rdfs:Class rdf:about="&physician;Endocrinologist">
-        <rdfs:label xml:lang="en">Endocrinologist</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
-        <property:treats rdf:resource="&disease;Endocrine"></property:treats>
-    </rdfs:Class>
-
-    <rdfs:Class rdf:about="&physician;Gastroenterologist">
-        <rdfs:label xml:lang="en">Gastroenterologist</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
-        <property:treats rdf:resource="&disease;InfectiousGastroenteritisOrColitis"></property:treats>
-    </rdfs:Class>
-
-    <rdfs:Class rdf:about="&physician;Cardiologist">
-        <rdfs:label xml:lang="en">Cardiologist</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
-        <property:treats rdf:resource="&disease;CirculatorySystem"></property:treats>
-    </rdfs:Class>
-
-    <rdfs:Class rdf:about="&physician;Hematologist">
-        <rdfs:label xml:lang="en">Hematologist</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
-        <property:treats rdf:resource="&disease;BloodOrBloodFormingOrgans"></property:treats>
-    </rdfs:Class>
-
-      <rdfs:Class rdf:about="&physician;Nephrologist">
-        <rdfs:label xml:lang="en">Nephrologist</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
-    </rdfs:Class>
-
-      <rdfs:Class rdf:about="&physician;Neurologist">
-        <rdfs:label xml:lang="en">Neurologist</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
-        <property:treats rdf:resource="&disease;NervousSystem"></property:treats>
-    </rdfs:Class>
-
-    <rdfs:Class rdf:about="&physician;Pulmonologist">
-        <rdfs:label xml:lang="en">Pulmonologist</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&physician;Physician"></rdfs:subClassOf>
-        <property:treats rdf:resource="&disease;Respiratory"></property:treats>
-    </rdfs:Class>
-
-    <!--Medical Organizations-->
-    <rdfs:Class rdf:about="&medorg;MedicalOrganization">
-        <rdfs:label xml:lang="en">Medical Organization</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&foaf;Organization"></rdfs:subClassOf>
-    </rdfs:Class>
+    </owl:Class>
     
-    <rdfs:Class rdf:about="&medorg;Hospital">
-        <rdfs:label xml:lang="en">Hospital</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&medorg;MedicalOrganization"></rdfs:subClassOf>
-    </rdfs:Class>
 
-    <rdfs:Class rdf:about="&medorg;Clinic">
+
+    <!-- http://www.medical-knowledge-base.org/disease#Metabolic -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#Metabolic">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#EndocrineMetabolicOrNutritionalDisorders"/>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/155258022"/>
+        <rdfs:label xml:lang="en">Metabolic Disorders</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#Neoplasms -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#Neoplasms">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Disease"/>
+        <rdfs:comment>An abnormal or uncontrolled cellular proliferation which is not coordinated with an 
+        organism&apos;s requirements for normal tissue growth, replacement or repair.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1630407678"/>
+        <rdfs:label xml:lang="en">Neoplasms</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#NervousSystem -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#NervousSystem">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Disease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#Nutritional -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#Nutritional">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#EndocrineMetabolicOrNutritionalDisorders"/>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1671987290"/>
+        <rdfs:label xml:lang="en">Nutritional Disorders</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#Respiratory -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease#Respiratory">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Disease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/medical-organization#Clinic -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/medical-organization#Clinic">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/medical-organization#MedicalOrganization"/>
         <rdfs:label xml:lang="en">Clinic</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&medorg;MedicalOrganization"></rdfs:subClassOf>
-    </rdfs:Class>
-
-    <!--Assertional Knowledge-->
-    <!--Symptoms-->
-    <rdf:Description rdf:about="&symptom;Fever">
-        <property:icd11Code>MG26</property:icd11Code>
-        <rdfs:label xml:lang="en">Fever of other or unknown origin</rdfs:label>
-        <rdf:type rdf:resource="&symptom;General"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/915343154"></rdfs:isDefinedBy>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="&symptom;Chills">
-        <property:icd11Code>MG21</property:icd11Code>
-        <rdfs:label xml:lang="en">Chills</rdfs:label>
-        <rdf:type rdf:resource="&symptom;General"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1495646237"></rdfs:isDefinedBy>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="&symptom;Fatigue">
-        <property:icd11Code>MG22</property:icd11Code>
-        <rdfs:label xml:lang="en">Fatigue</rdfs:label>
-        <rdf:type rdf:resource="&symptom;General"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1109546957"></rdfs:isDefinedBy>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="&symptom;Cough">
-        <property:icd11Code>MD12</property:icd11Code>
-        <rdfs:label xml:lang="en">Cough</rdfs:label>
-        <rdf:type rdf:resource="&symptom;Respiratory"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/2027526159"></rdfs:isDefinedBy>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="&symptom;BreathingAbnormalities">
-        <property:icd11Code>MD11</property:icd11Code>
-        <rdfs:label xml:lang="en">Abnormalities of breathing</rdfs:label>
-        <rdf:type rdf:resource="&symptom;Respiratory"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/208980208"></rdfs:isDefinedBy>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="&symptom;Wheezing">
-        <property:icd11Code>MD11.C</property:icd11Code>
-        <rdfs:label xml:lang="en">Wheezing</rdfs:label>
-        <rdf:type rdf:resource="&symptom;BreathingAbnormalities"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/685476566"></rdfs:isDefinedBy>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="&symptom;Dyspnoea">
-        <property:icd11Code>MD11.5</property:icd11Code>
-        <rdfs:label xml:lang="en">Dyspnoea</rdfs:label>
-        <rdf:type rdf:resource="&symptom;BreathingAbnormalities"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/960305085"></rdfs:isDefinedBy>
-    </rdf:Description>
+    </owl:Class>
     
 
-    <!--Diseases-->
-    <rdf:Description rdf:about="&disease;Pneumonia">
-        <property:icd11Code>CA40</property:icd11Code>
-        <rdfs:label xml:lang="en">Pneumonia</rdfs:label>
-        <rdfs:label xml:lang="bn">নিউমোনিয়া</rdfs:label>
-        <rdf:type rdf:resource="&disease;LungInfection"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/142052508"></rdfs:isDefinedBy>
-        <property:characterisedBy rdf:resource="&symptom;Fever"></property:characterisedBy>
-        <property:characterisedBy rdf:resource="&symptom;Chills"></property:characterisedBy>
-        <property:characterisedBy rdf:resource="&symptom;Cough"></property:characterisedBy>
-    </rdf:Description>
 
-    <rdf:Description rdf:about="&disease;DiabetesType1">
-        <property:icd11Code>5A10</property:icd11Code>
-        <rdfs:label xml:lang="en">Type 1 Diabetes</rdfs:label>
-        <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ১</rdfs:label>
-        <rdf:type rdf:resource="&disease;Diabetes"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1651053999"></rdfs:isDefinedBy>
-    </rdf:Description>
+    <!-- http://www.medical-knowledge-base.org/medical-organization#Hospital -->
 
-    <rdf:Description rdf:about="&disease;DiabetesType2">
-        <property:icd11Code>5A11</property:icd11Code>
-        <rdfs:label xml:lang="en">Type 2 Diabetes</rdfs:label>
-        <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ২</rdfs:label>
-        <rdf:type rdf:resource="&disease;Diabetes"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/119724091"></rdfs:isDefinedBy>
-    </rdf:Description>
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/medical-organization#Hospital">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/medical-organization#MedicalOrganization"/>
+        <rdfs:label xml:lang="en">Hospital</rdfs:label>
+    </owl:Class>
+    
 
 
-    <rdf:Description rdf:about="&disease;AcuteBronchitis">
+    <!-- http://www.medical-knowledge-base.org/medical-organization#MedicalOrganization -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/medical-organization#MedicalOrganization">
+        <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+        <rdfs:label xml:lang="en">Medical Organization</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#DiagnosticReport -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology#DiagnosticReport"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#Patient -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology#Patient">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.medical-knowledge-base.org/ontology/property#consulted_by"/>
+                <owl:someValuesFrom rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-test#BloodTest -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-test#BloodTest">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-test#DiagnosticTest"/>
+        <rdfs:label xml:lang="en">Blood test</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-test#DiagnosticTest -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-test#DiagnosticTest"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-test#HbA1C -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-test#HbA1C">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-test#BloodTest"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#CardiacArrest -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/disease#CardiacArrest">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#CardiacArrhythmia"/>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/395422191</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Cardiac arrest</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#CardiacArrhythmia -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/disease#CardiacArrhythmia">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#CirculatorySystem"/>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/1457291912</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Cardiac arrhythmia</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#CirculatorySystemInfections -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/disease#CirculatorySystemInfections">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#CirculatorySystem"/>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/1651137927</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Infections of the circulatory system</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#CysticFibrosis -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/disease#CysticFibrosis">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Metabolic"/>
+        <rdfs:comment xml:lang="en">Cystic fibrosis (CF) is a genetic disorder characterised by the production of sweat with a high salt content and mucus secretions with an abnormal viscosity. The disease is chronic and generally progressive, with onset usually occurring during early childhood or, occasionally, at birth (meconium ileus). Virtually any internal organ may be involved but the principle manifestations concern the breathing apparatus (chronic bronchitis), pancreas (pancreatic insufficiency, adolescent diabetes and occasionally pancreatitis) and, more rarely, the intestine (stercoral obstruction) or liver (cirrhosis). The usual presenting symptoms and signs include persistent pulmonary infection, pancreatic insufficiency, and elevated sweat chloride levels. However, many patients demonstrate mild or atypical symptoms, and clinicians should remain alert to the possibility of CF even when only a few of the usual features are present. Both criteria; clinical symptoms consistent with CF in at least one organ system and evidence of cystic fibrosis transmembrane conductance regulator (CFTR) dysfunction must be met to diagnose cystic fibrosis.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/514403112</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Cystic fibrosis</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#MovementDisorders -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/disease#MovementDisorders">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#NervousSystem"/>
+        <rdfs:comment xml:lang="en">This is a group of involuntary movement disorders.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/384289569</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Movement disorders</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#Parkinsonism -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/disease#Parkinsonism">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#MovementDisorders"/>
+        <rdfs:comment xml:lang="en">Parkinsonism is a clinical syndrome characterised by four cardinal features: rest tremor, muscular rigidity, akinesia or bradykinesia, and postural disturbances which include shuffling gait and flexed posture and loss of postural reflexes. Bradykinesia and one other clinical feature is required to make a diagnosis of Parkinsonism. Parkinsonism may result from a variety of conditions including progressive neurodegenerative disorders such as Parkinson Disease or Atypical Parkinsonism where the progressive degeneration of nigral and other neurons leads to dopamine deficiency. Parkinsonism may also be a result of structural lesions such as strokes or tumours or blockage of dopamine receptors in the striatum by drugs such as neuroleptics.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/2024168133</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Parkinsonism</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#TuberculosisOfHeart -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/disease#TuberculosisOfHeart">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#CirculatorySystemInfections"/>
+        <rdfs:comment xml:lang="en">Mycobacterium tuberculosis infection involving the heart and pericardium.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/271545608</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Tuberculosis of heart</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#Undernutrition -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/disease#Undernutrition">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease#Nutritional"/>
+        <rdfs:comment xml:lang="en">Undernutrition is a condition in which the body’s requirements are unmet due to underconsumption or to impaired absorption and use of nutrients. It can be produced by lack of access to food, or as a consequence of illness. Undernutrition commonly refers to a deficit in energy intake, but can also refer to deficiencies of specific nutrients, and can be either acute or chronic.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/1517885800</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Undernutrition</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/medical-organization#DiagnosticCenter -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/medical-organization#DiagnosticCenter">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/medical-organization#MedicalOrganization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/medicine#AnalgesicsOrAntipyreticsOrAnti-inflammatoryDrugs -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/medicine#AnalgesicsOrAntipyreticsOrAnti-inflammatoryDrugs">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#Medication"/>
+        <rdfs:seeAlso>http://id.who.int/icd/entity/1416993969</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/medicine#AntidiabeticDrugs -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/medicine#AntidiabeticDrugs">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#Medication"/>
+        <rdfs:seeAlso>http://id.who.int/icd/entity/365301781</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/medicine#Biguanides -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/medicine#Biguanides">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#AntidiabeticDrugs"/>
+        <rdfs:seeAlso>http://id.who.int/icd/entity/472057144</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/medicine#Medication -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology/medicine#Medication">
+        <rdfs:seeAlso>http://id.who.int/icd/entity/1170065830</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Cardiologist -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/physician#Cardiologist">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Endocrinologist -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/physician#Endocrinologist">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Gastroenterologist -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/physician#Gastroenterologist">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Hematologist -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/physician#Hematologist">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Nephrologist -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/physician#Nephrologist">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+        <rdfs:label xml:lang="en">Nephrologist</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Neurologist -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/physician#Neurologist">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Physician -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/physician#Physician"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Pulmonologist -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/physician#Pulmonologist">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#BreathingAbnormalities -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/symptom#BreathingAbnormalities">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/symptom#Respiratory"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#General -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/symptom#General">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/symptom#Symptom"/>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1390117811"/>
+        <rdfs:label xml:lang="en">General Symptoms</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#Respiratory -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/symptom#Respiratory">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/symptom#Symptom"/>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1758207185"/>
+        <rdfs:label xml:lang="en">Symptoms or signs involving the respiratory system</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#Symptom -->
+
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/symptom#Symptom">
+        <rdfs:subClassOf rdf:resource="http://www.medical-knowledge-base.org/disease-or-symptom#DiseaseOrSymptom"/>
+        <rdfs:label xml:lang="en">Symptom</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Organization -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Organization"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Person -->
+
+    <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Person"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#AcuteBronchitis -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#AcuteBronchitis">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/disease#LungInfection"/>
+        <property:characterisedBy rdf:resource="http://www.medical-knowledge-base.org/symptom#Cough"/>
+        <property:characterisedBy rdf:resource="http://www.medical-knowledge-base.org/symptom#Dyspnoea"/>
+        <property:characterisedBy rdf:resource="http://www.medical-knowledge-base.org/symptom#Fever"/>
+        <property:characterisedBy rdf:resource="http://www.medical-knowledge-base.org/symptom#Wheezing"/>
         <property:icd11Code>CA42</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/727572936"/>
         <rdfs:label xml:lang="en">Acute bronchitis</rdfs:label>
         <rdfs:label xml:lang="bn">তীব্র ব্রংকাইটিস</rdfs:label>
-        <rdf:type rdf:resource="&disease;LungInfection"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/727572936"></rdfs:isDefinedBy>
-        <property:characterisedBy rdf:resource="&symptom;Fever"></property:characterisedBy>
-        <property:characterisedBy rdf:resource="&symptom;Wheezing"></property:characterisedBy>
-        <property:characterisedBy rdf:resource="&symptom;Cough"></property:characterisedBy>
-        <property:characterisedBy rdf:resource="&symptom;Dyspnoea"></property:characterisedBy>
-    </rdf:Description>
+    </owl:NamedIndividual>
+    
 
-    <rdf:Description rdf:about="&disease;UnspecifiedInfectiousGastroenteritisOrColitis">
+
+    <!-- http://www.medical-knowledge-base.org/disease#BloodOrBloodFormingOrgans -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#BloodOrBloodFormingOrgans"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#CirculatorySystem -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#CirculatorySystem"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#DiabetesType1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#DiabetesType1">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/disease#Diabetes"/>
+        <property:icd11Code>5A10</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1651053999"/>
+        <rdfs:label xml:lang="en">Type 1 Diabetes</rdfs:label>
+        <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ১</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#DiabetesType2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#DiabetesType2">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/disease#Diabetes"/>
+        <property:characterisedBy rdf:resource="http://www.medical-knowledge-base.org/ontology/symptom#Hyperglycaemia"/>
+        <property:icd11Code>5A11</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/119724091"/>
+        <rdfs:label xml:lang="en">Type 2 Diabetes</rdfs:label>
+        <rdfs:label xml:lang="bn">বহুমূত্ররোগ ধরণ ২</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#Endocrine -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#Endocrine"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#InfectiousGastroenteritisOrColitis -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#InfectiousGastroenteritisOrColitis"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#NervousSystem -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#NervousSystem"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#Pneumonia -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#Pneumonia">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/disease#LungInfection"/>
+        <property:characterisedBy rdf:resource="http://www.medical-knowledge-base.org/symptom#Chills"/>
+        <property:characterisedBy rdf:resource="http://www.medical-knowledge-base.org/symptom#Cough"/>
+        <property:characterisedBy rdf:resource="http://www.medical-knowledge-base.org/symptom#Fever"/>
+        <property:icd11Code>CA40</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/142052508"/>
+        <rdfs:label xml:lang="en">Pneumonia</rdfs:label>
+        <rdfs:label xml:lang="bn">নিউমোনিয়া</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#Respiratory -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#Respiratory"/>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/disease#UnspecifiedInfectiousGastroenteritisOrColitis -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/disease#UnspecifiedInfectiousGastroenteritisOrColitis">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/disease#InfectiousGastroenteritisOrColitis"/>
         <property:icd11Code>1A40</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1688127370"/>
         <rdfs:label xml:lang="en">Gastroenteritis or colitis without specification of infectious agent</rdfs:label>
         <rdfs:label xml:lang="bn">সংক্রামক এজেন্টের নির্দিষ্টকরণ ছাড়াই গ্যাস্ট্রোএন্টেরাইটিস বা কোলাইটিস</rdfs:label>
-        <rdf:type rdf:resource="&disease;InfectiousGastroenteritisOrColitis"></rdf:type>
-        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1688127370"></rdfs:isDefinedBy>
-    </rdf:Description>
-
-    <!--Medical Organizations-->
-    <rdf:Description rdf:about="https://www.evercarebd.com/">
-        <rdf:type rdf:resource="&medorg;Hospital"></rdf:type>
-        <foaf:name>Evercare Hospital</foaf:name>
-        <foaf:homepage>https://www.evercarebd.com/</foaf:homepage>
-    </rdf:Description>
-
-    <rdf:Description rdf:about="https://www.birdembd.org/">
-        <rdf:type rdf:resource="&medorg;Hospital"></rdf:type>
-        <foaf:name>Birdem General Hospital</foaf:name>
-        <foaf:homepage>https://www.birdembd.org/</foaf:homepage>
-    </rdf:Description>
+    </owl:NamedIndividual>
+    
 
 
-    <!--Physicians-->
-    <rdf:Description rdf:about="&individual_physician;ShamsMunwar">
-        <rdf:type rdf:resource="&physician;Cardiologist"></rdf:type>
-        <foaf:name>Dr. Shams Munwar</foaf:name>
-        <property:hasAcademicDegrees>
-            <rdf:Bag>
-                <rdf:li>MBBS</rdf:li>
-                <rdf:li>MRCP</rdf:li>
-                <rdf:li>D.Card</rdf:li>
-            </rdf:Bag>
-        </property:hasAcademicDegrees>
+    <!-- http://www.medical-knowledge-base.org/ontology#CentralNeurocytomaOfBrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#CentralNeurocytomaOfBrain">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/disease#Neoplasms"/>
+        <rdfs:comment xml:lang="en">Central neurocytoma is a very rare brain tumour of young adults. It is typically found in the lateral ventricles and occasionally in the third ventricle. Symptoms are those of increased intracranial pressure.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/1247650801</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Central neurocytoma of brain</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#EndocrinePancreaticManifestationsOfUnspecifiedCysticFibrosis -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#EndocrinePancreaticManifestationsOfUnspecifiedCysticFibrosis">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#CysticFibrosis"/>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/1870098646</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Endocrine pancreatic manifestations of unspecified cystic fibrosis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#Insulin -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#Insulin">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#AntidiabeticDrugs"/>
+        <property1:cures rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#LabaidDiagnostic -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#LabaidDiagnostic">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/medical-organization#DiagnosticCenter"/>
+        <rdfs:label xml:lang="en">Labaid Diagnostic Center</rdfs:label>
+        <foaf:homepage xml:lang="en">https://labaidgroup.com/diagnostic</foaf:homepage>
+        <foaf:name xml:lang="en">Labaid Diagnostic Center</foaf:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#MahbubHKhan -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#MahbubHKhan">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/physician#Gastroenterologist"/>
+        <property:worksAt rdf:resource="http://www.medical-knowledge-base.org/ontology#LabaidDiagnostic"/>
+        <rdfs:label xml:lang="en">Prof. Mahbub H Khan</rdfs:label>
+        <rdfs:seeAlso xml:lang="en">http://profmahbubhkhan.com/</rdfs:seeAlso>
+        <foaf:mbox xml:lang="en">mhkphd2000@gmail.com</foaf:mbox>
+        <foaf:phone xml:lang="en">+8801911356298</foaf:phone>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#MasumKamalKhan -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#MasumKamalKhan">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/physician#Nephrologist"/>
+        <property:worksAt rdf:resource="https://www.evercarebd.com/"/>
+        <rdfs:label xml:lang="en">Prof. Dr. Md. Masum Kamal Khan</rdfs:label>
+        <foaf:name xml:lang="en">Prof. Dr. Md. Masum Kamal Khan</foaf:name>
+        <foaf:workplaceHomepage xml:lang="en">https://www.evercarebd.com/profile/?cid=556</foaf:workplaceHomepage>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#Metformin -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#Metformin">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#Biguanides"/>
+        <property1:cures rdf:resource="http://www.medical-knowledge-base.org/ontology/symptom#Hyperglycaemia"/>
+        <rdfs:seeAlso>http://id.who.int/icd/entity/166470345</rdfs:seeAlso>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#Patient -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#Patient">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#SurjerHashiClinic -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#SurjerHashiClinic">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/medical-organization#Clinic"/>
+        <rdfs:label xml:lang="en">Surjer Hashi Clinic</rdfs:label>
+        <foaf:homepage xml:lang="en">https://shnnetwork.org/</foaf:homepage>
+        <foaf:mbox xml:lang="en">Info@shnnetwork.org</foaf:mbox>
+        <foaf:phone xml:lang="en">+8802-222274620</foaf:phone>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology#ThirdDegreeMalnutrition -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology#ThirdDegreeMalnutrition">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#Undernutrition"/>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/706054718</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Third degree malnutrition</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-report#Report12345 -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-report#Report12345">
+        <property1:produced_by rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-test#Test12345"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-test#HbA1C -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-test#HbA1C">
+        <property1:has_info_about rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType1"/>
+        <property1:has_info_about rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-test#Test12345 -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-test#Test12345">
+        <recommended_by rdf:resource="http://www.medical-knowledge-base.org/physician/individual#FaruquePathan"/>
+        <property1:has_info_about rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType2"/>
+        <property1:performed_in rdf:resource="http://www.medical-knowledge-base.org/ontology#LabaidDiagnostic"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#BloodDyscrasia -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/disease#BloodDyscrasia">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/disease#BloodOrBloodFormingOrgans"/>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/166243288</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Blood dyscrasia</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#ParkinsonDisease -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/disease#ParkinsonDisease">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#Parkinsonism"/>
+        <rdfs:comment xml:lang="en">Parkinson Disease is a gradual onset progressive degenerative disease whose cardinal manifestations include bradykinesia plus one of the following-tremor, rigidity or postural instability. None motor manifestations include autonomic dysfunction and neuropsychiatric features.
+
+Early mild PD, H&amp;Y stage I-III, is characterized by mild to moderate motor deficits with either preserved or mildly affected postural stability, leading to mild to moderate motor disability of the patients (including unilateral rest tremor, akinesia, no regular falls)Patients with early PD usually don&apos;t need additional care or caregivers, treatment will be initiated and it efficient, usually without complications, need for physicians and nurses care can be calculated and does not need major resources, medical complications may include non-motor symptoms, falls are rare.
+
+Advanced PD is characterized by H&amp;Y stage IV-V, is characterized by moderate to severe motor deficits, usually accompanied with response fluctuations, dyskinesias and severe off-periods and includes postural instability leading to frequent falls with increased risk of fractures. Patients with advanced PD need intensive and individual medical care including neurologist, PD experts and nurses because of treatment complications, such as on-off fluctuations, psychiatric complications, dementia, frequent falls with i.e. fractures. Advanced PD patients need specific treatment options, such as deep brain stimulation, continuous delivery of medications via pump therapies to improve response fluctuations. These regimens require many resources and sometimes inpatients stay. Psychiatric complications may need additional attention and psychiatric experts for specific interventions and dementia may require additional medications and care.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/296066191</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Parkinson disease</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#SuddenCardiacArrest -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/disease#SuddenCardiacArrest">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#CardiacArrest"/>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/264292672</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Sudden cardiac arrest</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#TuberculosisOfEndocardium -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/disease#TuberculosisOfEndocardium">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#TuberculosisOfHeart"/>
+        <rdfs:comment xml:lang="en">This is a common, and in many cases lethal, infectious disease caused by various strains of mycobacteria, usually Mycobacterium tuberculosis. This diagnosis is of the endocardium.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/551171489</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Tuberculosis of endocardium</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/disease#TuberculosisOfMyocardium -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/disease#TuberculosisOfMyocardium">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/disease#TuberculosisOfHeart"/>
+        <rdfs:comment xml:lang="en">Bacterial myocarditis (bacterial inflammatory cardiomyopathy) due to Mycobacterium tuberculosis.</rdfs:comment>
+        <rdfs:isDefinedBy xml:lang="en">http://id.who.int/icd/entity/633835087</rdfs:isDefinedBy>
+        <rdfs:label xml:lang="en">Tuberculosis of myocardium</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/medicine#Paracetamol -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/medicine#Paracetamol">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology/medicine#AnalgesicsOrAntipyreticsOrAnti-inflammatoryDrugs"/>
+        <property1:cures rdf:resource="http://www.medical-knowledge-base.org/symptom#Fever"/>
+        <rdfs:seeAlso>http://id.who.int/icd/entity/1864779620</rdfs:seeAlso>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/patient#patient_x -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/patient#patient_x">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology#Patient"/>
+        <property1:consulted_by rdf:resource="http://www.medical-knowledge-base.org/physician/individual#FaruquePathan"/>
+        <property1:hasDiseaseOrSymptom rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType2"/>
+        <property1:has_report rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-report#Report12345"/>
+        <foaf:name>Patient X</foaf:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/patient#patient_y_inferred -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/patient#patient_y_inferred">
+        <property1:consulted_by rdf:resource="http://www.medical-knowledge-base.org/physician/individual#FaruquePathan"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/physician/individual#BazlurRashidSumon -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/physician/individual#BazlurRashidSumon">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/physician#Neurologist"/>
+        <property:worksAt rdf:resource="http://www.medical-knowledge-base.org/ontology#LabaidDiagnostic"/>
+        <rdfs:label xml:lang="en">Dr. Bazlur Rashid Sumon</rdfs:label>
+        <foaf:homepage xml:lang="en">https://www.labaiddiagnostics.com/doctor/detail/1605</foaf:homepage>
+        <foaf:name xml:lang="en">Dr. Bazlur Rashid Sumon</foaf:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/physician/individual#IndrajitPrasad -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/physician/individual#IndrajitPrasad">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/physician#Endocrinologist"/>
+        <property:worksAt rdf:resource="http://www.medical-knowledge-base.org/ontology#LabaidDiagnostic"/>
+        <rdfs:label xml:lang="en">Associate Prof. Dr. Indrajit Prasad</rdfs:label>
+        <foaf:name xml:lang="en">Associate Prof. Dr. Indrajit Prasad</foaf:name>
+        <foaf:workplaceHomepage xml:lang="en">https://www.labaiddiagnostics.com/doctor/detail/1107</foaf:workplaceHomepage>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/physician/individual#MarufAlHasan -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/physician/individual#MarufAlHasan">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/physician#Hematologist"/>
+        <property:worksAt rdf:resource="http://www.medical-knowledge-base.org/ontology#LabaidDiagnostic"/>
+        <rdfs:label xml:lang="en">DR.MD.MARUF AL HASAN</rdfs:label>
+        <foaf:name xml:lang="en">DR.MD.MARUF AL HASAN</foaf:name>
+        <foaf:workplaceHomepage xml:lang="en">https://www.labaiddiagnostics.com/doctor/detail/1446</foaf:workplaceHomepage>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/physician/individual#RajibKumarSaha -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/physician/individual#RajibKumarSaha">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/physician#Pulmonologist"/>
+        <rdfs:label xml:lang="en">Dr. Rajib Kumar Saha</rdfs:label>
+        <foaf:homepage xml:lang="en">https://drrajibkumarsaha.com/</foaf:homepage>
+        <foaf:name xml:lang="en">Dr. Rajib Kumar Saha</foaf:name>
+        <foaf:phone xml:lang="en">+8801787683333</foaf:phone>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/symptom#Hyperglycaemia -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/symptom#Hyperglycaemia">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/symptom#Symptom"/>
+        <property:icdCode>MA18.0</property:icdCode>
+        <rdfs:label>Elevated blood glucose level</rdfs:label>
+        <rdfs:seeAlso>http://id.who.int/icd/entity/307705857</rdfs:seeAlso>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Cardiologist -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician#Cardiologist">
+        <property:treats rdf:resource="http://www.medical-knowledge-base.org/disease#CirculatorySystem"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Endocrinologist -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician#Endocrinologist">
+        <property:treats rdf:resource="http://www.medical-knowledge-base.org/disease#Endocrine"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Gastroenterologist -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician#Gastroenterologist">
+        <property:treats rdf:resource="http://www.medical-knowledge-base.org/disease#InfectiousGastroenteritisOrColitis"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Hematologist -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician#Hematologist">
+        <property:treats rdf:resource="http://www.medical-knowledge-base.org/disease#BloodOrBloodFormingOrgans"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Neurologist -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician#Neurologist">
+        <property:treats rdf:resource="http://www.medical-knowledge-base.org/disease#NervousSystem"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Physician -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician#Physician">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician#Pulmonologist -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician#Pulmonologist">
+        <property:treats rdf:resource="http://www.medical-knowledge-base.org/disease#Respiratory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician/individual#FaruquePathan -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician/individual#FaruquePathan">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/physician#Endocrinologist"/>
+        <property:bio>
+        Prof. Md. Faruque pathan is working in the field of Diabetes, Endocrine and metabolic disorders for last 3 decades.
+        His working arena covers clinical services with excellence of care, researches and teaching of post graduate students and trainee doctors for mentioned subspecialty.
+        </property:bio>
+        <property:worksAt rdf:resource="https://www.birdembd.org/"/>
+        <rdfs:seeAlso rdf:resource="https://pathanbd.com/"/>
+        <foaf:mbox>pathan279@yahoo.com</foaf:mbox>
+        <foaf:name>Md. Faruque Pathan</foaf:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/physician/individual#ShamsMunwar -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/physician/individual#ShamsMunwar">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/physician#Cardiologist"/>
         <property:bio>
         Dr. Shams Munwar graduated from Dhaka Medical College in 1985. 
         After completing his internship, Dr. Munwar left for the United Kingdom for higher medical training.
@@ -395,29 +1265,186 @@
         While doing his fellowship in 1995 under Professor Celia Oakley at the Hammersmith Hospital, London, Dr. Munwar obtained Diploma in Cardiology from the University of London.
         He did his Interventional Fellowship from Wentworth Hospital in Durban, under University of Natal in the Republic of South Africa. 
         He obtained FRCP from London, UK in July, 2010. Dr. Shams Munwar has over 14 years experience in the field of Cardiology. 
-        Before joining Evercare Hospital Dhaka, he was working as Head of the Department of Cardiology at Z.H. Sikder Women's Medical College.
+        Before joining Evercare Hospital Dhaka, he was working as Head of the Department of Cardiology at Z.H. Sikder Women&apos;s Medical College.
         </property:bio>
-        <property:worksAt rdf:resource="https://www.evercarebd.com/"></property:worksAt>
-        <rdfs:seeAlso rdf:resource="https://www.evercarebd.com/profile/?cid=69"></rdfs:seeAlso>
-    </rdf:Description>
+        <property:worksAt rdf:resource="https://www.evercarebd.com/"/>
+        <rdfs:seeAlso rdf:resource="https://www.evercarebd.com/profile/?cid=69"/>
+        <foaf:name>Dr. Shams Munwar</foaf:name>
+    </owl:NamedIndividual>
+    
 
-    <rdf:Description rdf:about="&individual_physician;FaruquePathan">
-        <rdf:type rdf:resource="&physician;Endocrinologist"></rdf:type>
-        <foaf:name>Md. Faruque Pathan</foaf:name>
-        <foaf:mbox>pathan279@yahoo.com</foaf:mbox>
-        <property:hasAcademicDegrees>
-            <rdf:Bag>
-                <rdf:li>MBBS</rdf:li>
-                <rdf:li>MD</rdf:li>
-                <rdf:li>FACE</rdf:li>
-            </rdf:Bag>
-        </property:hasAcademicDegrees>
-        <property:bio>
-        Prof. Md. Faruque pathan is working in the field of Diabetes, Endocrine and metabolic disorders for last 3 decades.
-        His working arena covers clinical services with excellence of care, researches and teaching of post graduate students and trainee doctors for mentioned subspecialty.
-        </property:bio>
-        <property:worksAt rdf:resource="https://www.birdembd.org/"></property:worksAt>
-        <rdfs:seeAlso rdf:resource="https://pathanbd.com/"></rdfs:seeAlso>
-    </rdf:Description>
 
+    <!-- http://www.medical-knowledge-base.org/symptom#BreathingAbnormalities -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/symptom#BreathingAbnormalities">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/symptom#Respiratory"/>
+        <property:icd11Code>MD11</property:icd11Code>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#Chills -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/symptom#Chills">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/symptom#General"/>
+        <property:icd11Code>MG21</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1495646237"/>
+        <rdfs:label xml:lang="en">Chills</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#Cough -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/symptom#Cough">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/symptom#Respiratory"/>
+        <property:icd11Code>MD12</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/2027526159"/>
+        <rdfs:label xml:lang="en">Cough</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#Dyspnoea -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/symptom#Dyspnoea">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/symptom#BreathingAbnormalities"/>
+        <property:icd11Code>MD11.5</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/960305085"/>
+        <rdfs:label xml:lang="en">Dyspnoea</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#Fatigue -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/symptom#Fatigue">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/symptom#General"/>
+        <property:icd11Code>MG22</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1109546957"/>
+        <rdfs:label xml:lang="en">Fatigue</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#Fever -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/symptom#Fever">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/symptom#General"/>
+        <property:icd11Code>MG26</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/915343154"/>
+        <rdfs:label xml:lang="en">Fever of other or unknown origin</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/symptom#Wheezing -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/symptom#Wheezing">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/symptom#BreathingAbnormalities"/>
+        <property:icd11Code>MD11.C</property:icd11Code>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/685476566"/>
+        <rdfs:label xml:lang="en">Wheezing</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.birdembd.org/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.birdembd.org/">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/medical-organization#Hospital"/>
+        <rdfs:label>Birdem General Hospital</rdfs:label>
+        <foaf:homepage>https://www.birdembd.org/</foaf:homepage>
+        <foaf:name>Birdem General Hospital</foaf:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- https://www.evercarebd.com/ -->
+
+    <owl:NamedIndividual rdf:about="https://www.evercarebd.com/">
+        <rdf:type rdf:resource="http://www.medical-knowledge-base.org/medical-organization#Hospital"/>
+        <rdfs:label>Evercare Hospital</rdfs:label>
+        <foaf:homepage>https://www.evercarebd.com/</foaf:homepage>
+        <foaf:name>Evercare Hospital</foaf:name>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/21500692"/>
+        <rdfs:label xml:lang="en">Endocrine, nutritional or metabolic Diseases</rdfs:label>
+    </rdf:Description>
+    <rdf:Description>
+        <rdfs:label></rdfs:label>
+    </rdf:Description>
+    <rdf:Description>
+        <rdfs:label xml:lang="en">Disease Or Symptom</rdfs:label>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/disease#BloodOrBloodFormingOrgans">
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1766440644"/>
+        <rdfs:label xml:lang="en">Diseases of the blood or blood-forming organs</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/disease#CirculatorySystem">
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/426429380"/>
+        <rdfs:label xml:lang="en">Diseases of the circulatory system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/disease#Endocrine">
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/461716838"/>
+        <rdfs:label xml:lang="en">Endocrine Diseases</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/disease#InfectiousGastroenteritisOrColitis">
+        <rdfs:label xml:lang="en">Gastroenteritis or colitis of infectious origin</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/588616678"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/disease#NervousSystem">
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/1296093776"/>
+        <rdfs:label xml:lang="en">Diseases of the nervous system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/disease#Respiratory">
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/197934298"/>
+        <rdfs:label xml:lang="en">Diseases of the Respiratory System</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-test#HbA1C">
+        <rdfs:comment xml:lang="en">The hemoglobin A1c (HbA1c) test measures the amount of blood sugar (glucose) attached to your hemoglobin. Hemoglobin is the part of your red blood cells that carries oxygen from your lungs to the rest of your body. It is an important blood test that gives a good indication of how well your diabetes is being controlled.</rdfs:comment>
+        <rdfs:label xml:lang="en">HbA1C</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/physician#Cardiologist">
+        <rdfs:label xml:lang="en">Cardiologist</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/physician#Endocrinologist">
+        <rdfs:label xml:lang="en">Endocrinologist</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/physician#Gastroenterologist">
+        <rdfs:label xml:lang="en">Gastroenterologist</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/physician#Hematologist">
+        <rdfs:label xml:lang="en">Hematologist</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/physician#Neurologist">
+        <rdfs:label xml:lang="en">Neurologist</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/physician#Physician">
+        <rdfs:label xml:lang="en">Physician</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/physician#Pulmonologist">
+        <rdfs:label xml:lang="en">Pulmonologist</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://www.medical-knowledge-base.org/symptom#BreathingAbnormalities">
+        <rdfs:label xml:lang="en">Abnormalities of breathing</rdfs:label>
+        <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/208980208"/>
+    </rdf:Description>
 </rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
