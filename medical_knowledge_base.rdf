@@ -1000,11 +1000,29 @@
     
 
 
+    <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-report#Report12345 -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-report#Report12345">
+        <property1:produced_by rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-test#Test12345"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-test#HbA1C -->
 
     <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-test#HbA1C">
         <property1:has_info_about rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType1"/>
         <property1:has_info_about rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/diagnostic-test#Test12345 -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/diagnostic-test#Test12345">
+        <recommended_by rdf:resource="http://www.medical-knowledge-base.org/physician/individual#FaruquePathan"/>
+        <property1:has_info_about rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType2"/>
+        <property1:performed_in rdf:resource="http://www.medical-knowledge-base.org/ontology#LabaidDiagnostic"/>
     </owl:NamedIndividual>
     
 
@@ -1081,6 +1099,7 @@ Advanced PD is characterized by H&amp;Y stage IV-V, is characterized by moderate
     <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/patient#patient_x">
         <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology#Patient"/>
         <property1:hasDiseaseOrSymptom rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType2"/>
+        <property1:has_report rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-report#Report12345"/>
         <foaf:name>Patient X</foaf:name>
     </owl:NamedIndividual>
     
@@ -1334,11 +1353,11 @@ Advanced PD is characterized by H&amp;Y stage IV-V, is characterized by moderate
         <foaf:name>Evercare Hospital</foaf:name>
     </owl:NamedIndividual>
     <rdf:Description>
-        <rdfs:label></rdfs:label>
-    </rdf:Description>
-    <rdf:Description>
         <rdfs:isDefinedBy rdf:resource="http://id.who.int/icd/entity/21500692"/>
         <rdfs:label xml:lang="en">Endocrine, nutritional or metabolic Diseases</rdfs:label>
+    </rdf:Description>
+    <rdf:Description>
+        <rdfs:label></rdfs:label>
     </rdf:Description>
     <rdf:Description>
         <rdfs:label xml:lang="en">Disease Or Symptom</rdfs:label>
