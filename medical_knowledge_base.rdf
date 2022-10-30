@@ -512,7 +512,14 @@
 
     <!-- http://www.medical-knowledge-base.org/ontology#Patient -->
 
-    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology#Patient"/>
+    <owl:Class rdf:about="http://www.medical-knowledge-base.org/ontology#Patient">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.medical-knowledge-base.org/ontology/property#consulted_by"/>
+                <owl:someValuesFrom rdf:resource="http://www.medical-knowledge-base.org/physician#Physician"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+    </owl:Class>
     
 
 
@@ -1098,9 +1105,18 @@ Advanced PD is characterized by H&amp;Y stage IV-V, is characterized by moderate
 
     <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/patient#patient_x">
         <rdf:type rdf:resource="http://www.medical-knowledge-base.org/ontology#Patient"/>
+        <property1:consulted_by rdf:resource="http://www.medical-knowledge-base.org/physician/individual#FaruquePathan"/>
         <property1:hasDiseaseOrSymptom rdf:resource="http://www.medical-knowledge-base.org/disease#DiabetesType2"/>
         <property1:has_report rdf:resource="http://www.medical-knowledge-base.org/ontology/diagnostic-report#Report12345"/>
         <foaf:name>Patient X</foaf:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.medical-knowledge-base.org/ontology/patient#patient_y_inferred -->
+
+    <owl:NamedIndividual rdf:about="http://www.medical-knowledge-base.org/ontology/patient#patient_y_inferred">
+        <property1:consulted_by rdf:resource="http://www.medical-knowledge-base.org/physician/individual#FaruquePathan"/>
     </owl:NamedIndividual>
     
 
